@@ -5,9 +5,9 @@ interface Props {
 }
 const Header = ({text}:Props) => {
     return (
-        <div>
+        <h2 className="m-5 align-self-center text-center">
             {text}
-        </div>
+        </h2>
     );
 }
 

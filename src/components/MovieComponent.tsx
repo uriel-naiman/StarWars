@@ -10,14 +10,15 @@ interface Props {
 function MovieComponent({movieToShow}: Props) {
     
     return (
-        <div>
-            <Header text="Name of Movie" />
+        <div className="align-self-center">
+            <Header text={movieToShow ? movieToShow.title : "Choose a movie from the sidebar please"} />
             <div>
-                {movieToShow}
+                {movieToShow ? movieToShow.opening_crawl :""}
             </div>
+            {movieToShow &&
             <Button variant="primary" size="lg">
-                {}
-            </Button>
+                Save movie
+            </Button>}
         </div>
     );
 }

@@ -1,28 +1,37 @@
 import React from 'react';
 import Logo from './Logo';
 import { MovieData } from './types';
-import Nav from 'react-bootstrap/Nav';
 
 interface Props {
     movies: MovieData[];
     count: number | undefined;
     handleOnClick: any;
+    currentMovieId: number;
 }
 
-const TableOfContents = ({movies, count, handleOnClick}: Props) => {
+const TableOfContents = ({movies, 
+                          count, 
+                          handleOnClick,
+                          currentMovieId}: Props) => {
     
     return (
-        <div>
-            <Logo numOfMovies={count}/>
-            <Nav className="d-flex flex-column">
+        <div 
+            className="d-flex flex-column align-content-center"
+            style={{minWidth: '200px'}} 
+        >
+            <Logo numOfMovies={count} />
+            <div className="d-flex flex-column ">
                 {movies.map((movie) => {
                     return (
-                        <Nav.Item as="li" key = {movie.episode_id} onClick={handleOnClick(movie.episode_id)}>
+                        <div key = {movie.episode_id} 
+                                  onClick={handleOnClick(movie)}
+                                  className="m-1 mb-auto"
+                        >
                              {movie.title}
-                        </Nav.Item>
+                        </div>
                     )
                 })}
-            </Nav>
+            </div>
 
             
         </div>
