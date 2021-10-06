@@ -1,18 +1,21 @@
 import React from 'react';
 import Logo from './Logo';
 import { MovieData } from './types';
+import styles from './styles.module.css';
 
 interface Props {
     movies: MovieData[];
     count: number | undefined;
     handleOnClick: any;
     currentMovieId: number;
+    savedMovieId: number;
 }
 
 const TableOfContents = ({movies, 
                           count, 
                           handleOnClick,
-                          currentMovieId}: Props) => {
+                          currentMovieId,
+                          savedMovieId}: Props) => {
     
     return (
         <div 
@@ -25,7 +28,7 @@ const TableOfContents = ({movies,
                     return (
                         <div key = {movie.episode_id} 
                                   onClick={handleOnClick(movie)}
-                                  className="m-1 mb-auto"
+                                  className={`${styles.clickable} mt-2 p-2 text-center border`}
                         >
                              {movie.title}
                         </div>

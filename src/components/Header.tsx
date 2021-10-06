@@ -5,7 +5,7 @@ interface Props {
 }
 const Header = ({text}:Props) => {
     return (
-        <h2 className="m-5 align-self-center text-center">
+        <h2 className="mt-5 align-self-center text-center">
             {text}
         </h2>
     );

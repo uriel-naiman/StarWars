@@ -4,15 +4,19 @@ import { MovieData } from './types';
 
 interface Props {
     currentMovie: MovieData | undefined;
+    handleOnClick: any;
 }
-const BodyContainer = ({currentMovie}: Props) => {
+const BodyContainer = ({currentMovie, handleOnClick}: Props) => {
 
     return (
         <div className="d-flex flex-column flex-fill align-content-center">
             <Header 
                 text="Choose your favorite Star Wars Movie"
             /> 
-            <MovieComponent movieToShow = {currentMovie} />
+            <MovieComponent 
+                movieToShow = {currentMovie} 
+                handleOnClick={handleOnClick}
+            />
         </div>
     );
 }

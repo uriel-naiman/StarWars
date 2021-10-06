@@ -7,7 +7,7 @@ interface Props {
 
 const Logo = ({numOfMovies}: Props) => {
     return (
-        <div className="m-2 align-self-center">
+        <div className="m-2 align-self-center border-bottom ">
             <LogoSVG />
             <div className="m-2 align-self-center">
                 {`${numOfMovies} movies:`}
