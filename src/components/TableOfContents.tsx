@@ -1,4 +1,3 @@
-import React from 'react';
 import Logo from './Logo';
 import { MovieData } from './types';
 import styles from './styles.module.css';
@@ -6,29 +5,27 @@ import styles from './styles.module.css';
 interface Props {
     movies: MovieData[];
     count: number | undefined;
-    handleOnClick: any;
+    setMovie: any;
     currentMovieId: number;
-    savedMovieId: number;
 }
 
 const TableOfContents = ({movies, 
                           count, 
-                          handleOnClick,
-                          currentMovieId,
-                          savedMovieId}: Props) => {
-    
+                          setMovie,
+                          currentMovieId}: Props) => {
+
     return (
         <div 
-            className="d-flex flex-column align-content-center"
-            style={{minWidth: '200px'}} 
+            className="d-flex flex-column align-content-center p-2"
+            style={{minWidth: '220px'}} 
         >
             <Logo numOfMovies={count} />
             <div className="d-flex flex-column ">
                 {movies.map((movie) => {
                     return (
                         <div key = {movie.episode_id} 
-                                  onClick={handleOnClick(movie)}
-                                  className={`${styles.clickable} mt-2 p-2 text-center border`}
+                                  onClick={() => setMovie(movie)}
+                                  className={ (currentMovieId === movie.episode_id) ? `${styles.current} mt-2 p-2 text-center`: `${styles.clickable} mt-2 p-2 text-center border`}
                         >
                              {movie.title}
                         </div>

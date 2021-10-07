@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getMovies } from '../lib/movieApi';
 import BodyContainer from './BodyContainer';
 import TableOfContents from './TableOfContents';
 import { APIResponse, MovieData } from './types';
+import styles from './styles.module.css';
 import localforage from 'localforage';
 localforage.config();
 
@@ -29,29 +30,25 @@ const OuterContainer = () => {
         });
     },[])
 
-    const handleOnTocClick = (movie: MovieData) => {
-        setCurrentMovie(movie);
-    }
-
-    const handleOnSaveClick = async(movieId: number) => {
-        setSavedMovieId(movieId);
-        await localforage.setItem( movieIdKey, movieId, (err)=>{
+    const handleOnSaveClick = async(id: number) => {
+        setSavedMovieId(id);
+        await localforage.setItem( movieIdKey, id, (err)=>{
             if(err) window.alert(err.message);
           });
     }
 
     return (
-        <div className="d-flex">
+        <div className={`${styles.container} d-flex`}>
             <TableOfContents 
                 movies= {moviesArray} 
                 count= {numOfMovies} 
-                handleOnClick={handleOnTocClick}
-                currentMovieId={currentMovie ? currentMovie.episode_id : 0}
-                savedMovieId={savedMovieId}
-            />
+                setMovie={(movie: MovieData) => setCurrentMovie(movie)}
+                currentMovieId={currentMovie ? currentMovie.episode_id : 7}
+                />
            <BodyContainer 
                 currentMovie={currentMovie}
                 handleOnClick={handleOnSaveClick}
+                savedMovieId={savedMovieId}
             />
         </div>
     )
